@@ -1,16 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.WSA;
 
 [CreateAssetMenu(menuName = "SO/Card")]
+[System.Serializable]
 public class CardSO : ScriptableObject
 {
-    [field:Header("Activation")]
     [field:SerializeField]
-    public Cost ActivationCost {get; private set;}
-    [field:SerializeField]
-    public UnityEvent ActivationReward {get; private set;}
+    public Card CardPrefab { get; private set;}
     
+    [field:Header("Overview")]
+    [field:SerializeField]
+    public string CardName { get; private set;}
+    [field:SerializeField]
+    [field:TextArea(3,10)]
+    public string CardDescribtion { get; private set;}
+    [field:SerializeField]
+    public Sprite CardSprite { get; private set;}
+
+
+    [field:Header("Events")]
+    [field:SerializeField]
+    public CardEventsSO CardEvents { get; private set;}
 }

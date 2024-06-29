@@ -15,9 +15,9 @@ public class BuildingSO : ScriptableObject
 
     [field:Header("Costs & Effects")]
     [field:SerializeField]
-    public Cost BuildingCost { get; private set; }
+    public Resources BuildingCost { get; private set; }
     [field:SerializeField]
-    public Cost DestructionReward { get; private set; }
+    public Resources DestructionReward { get; private set; }
 
 
     [field:Header("Objects")]

@@ -44,7 +44,7 @@ public class CardEventsSO : ScriptableObject
         } else Debug.Log("Cost Failed");
     }
 
-    public void Ability() {
+    public void UseAbility() {
         if (AbilityCost.Execute()) {
             AbilityEffect.Execute();
         } else Debug.Log("Cost Failed");

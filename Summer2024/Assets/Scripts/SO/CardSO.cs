@@ -4,8 +4,15 @@ using UnityEngine;
 [System.Serializable]
 public class CardSO : ScriptableObject
 {
-    [field:SerializeField]
-    public Card CardPrefab { get; private set;}
+    [SerializeField]
+    private GameObject _cardPrefab;
+    public Card CardPrefab { 
+        get {
+            Card _card = Instantiate(_cardPrefab).GetComponent<Card>();
+            _card.CardSO = this;
+            return _card;
+        }
+    }
     
     [field:Header("Overview")]
     [field:SerializeField]

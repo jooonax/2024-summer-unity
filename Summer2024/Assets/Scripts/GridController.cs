@@ -33,7 +33,17 @@ public class GridController : MonoBehaviour
 
     private Vector3 mouseDownPosition;
 
+    public static GridController Instance { get; private set; }
     void Awake() {
+        if (Instance != null && Instance != this) { 
+            Destroy(this); 
+            return;
+        } 
+        else { 
+            Instance = this; 
+        } 
+
+
         if (worldSOs.Count == 0) {
             for (int i = 0; i < width * width; i++) {
                 worldSOs.Add(tiles[0]);

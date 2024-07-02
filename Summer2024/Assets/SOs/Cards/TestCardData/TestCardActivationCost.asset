@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: TestCardActivationCost
   m_EditorClassIdentifier: 
   playerInventory: {fileID: 11400000, guid: ac2e1e7de4014b5448e9c524566d9105, type: 2}
-  reward:
-    <Wood>k__BackingField: 50
-    <Stone>k__BackingField: 0
-    <People>k__BackingField: 0
+  add: 0
+  resources:
+    <Wood>k__BackingField: 10
+    <Stone>k__BackingField: 5
+    <People>k__BackingField: 3
     <VPs>k__BackingField: 0

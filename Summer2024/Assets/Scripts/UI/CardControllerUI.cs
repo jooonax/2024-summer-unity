@@ -1,10 +1,15 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardControllerUI : MonoBehaviour {
     [SerializeField]
+    private Button nextRoundButton;
+    [SerializeField]
     private TMPro.TextMeshProUGUI roundText;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI deckPartText;
 
 
     [SerializeField]
@@ -37,18 +42,23 @@ public class CardControllerUI : MonoBehaviour {
             _slot.Init(cardController, i);
             activeCardSlots[i] = _slot;
         }
+
+        nextRoundButton.onClick.AddListener(cardController.NextRound);
     }
 
     public void UpdateUI() {
         roundText.text = "Round " + cardController.RoundController.RoundNumber;
-
+        deckPartText.text = "Deck Part " + (cardController.ActiveDeckPartNumber+1);
         
         foreach (HandCardSlotUI handCardSlotUI in handCardSlots) {
-            Debug.Log(handCardSlotUI);
             handCardSlotUI.UpdateUI();
         }
         foreach (ActiveCardSlotUI activeCardSlotUI in activeCardSlots) {
             activeCardSlotUI.UpdateUI();
         }
+    }
+
+    private void OnDestroy() {
+        nextRoundButton.onClick.RemoveAllListeners();
     }
 }

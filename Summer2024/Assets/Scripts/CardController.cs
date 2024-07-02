@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -33,6 +34,7 @@ public class CardController : MonoBehaviour
         HandCards = new Card[HAND_CARDS_AMOUNT];
         ActiveCards = new Card[ACTIVE_CARDS_AMOUNT];
         cardControllerUI.Init(this);
+    
     }
 
     public void ActivateCard(int handIndex) {
@@ -49,7 +51,7 @@ public class CardController : MonoBehaviour
                 DiscardPile.Add(_activeCard);
             }
             ActiveCards[activeIndex] = HandCards[handIndex];
-            ActiveCards[activeIndex].CardSO.CardEvents.Activate();
+            ActiveCards[activeIndex].CardSO.CardEvents.Activate(ActiveCards[activeIndex]);
             HandCards[handIndex] = null;
 
             RoundController.NextRound();
@@ -58,20 +60,28 @@ public class CardController : MonoBehaviour
     }
 
     public void DestructCard(int handIndex) {
-        HandCards[handIndex].CardSO.CardEvents.Destruct();
+        HandCards[handIndex].CardSO.CardEvents.Destruct(HandCards[handIndex]);
         HandCards[handIndex] = null;
         cardControllerUI.UpdateUI();
     }
 
+    public void NextRound() {
+        RoundController.NextRound();
+        cardControllerUI.UpdateUI();
+    }
+
     public void UseAbility(int activeIndex) {
-        ActiveCards[activeIndex].CardSO.CardEvents.UseAbility();
+        if (!ActiveCards[activeIndex].UsedAbility) {
+            ActiveCards[activeIndex].CardSO.CardEvents.UseAbility(ActiveCards[activeIndex]);
+            ActiveCards[activeIndex].UsedAbility = true;
+        }
         cardControllerUI.UpdateUI();
     }
 
     public void Permanent() {
         foreach(Card _card in ActiveCards) {
             if (_card) {
-                _card.CardSO.CardEvents.Permanent();
+                _card.CardSO.CardEvents.Permanent(_card);
             }
         }
     }

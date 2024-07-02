@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [CreateAssetMenu(menuName = "SO/CardEvents")]
 [System.Serializable]
@@ -32,29 +33,30 @@ public class CardEventsSO : ScriptableObject
     public Event DestructionEffect {get; private set;}
     
 
-    public void Activate() {
-        if (ActivationCost.Execute()) {
-            ActivationEffect.Execute();
+    public void Activate(Card card) {
+        ExecuteEvent(ActivationCost, ActivationEffect, card);
+    }
+
+    public void Permanent(Card card) {
+        ExecuteEvent(PermanentCost, PermanentEffect, card);
+    }
+
+    public void UseAbility(Card card) {
+        ExecuteEvent(AbilityCost, AbilityEffect, card);
+    }
+
+    private void ExecuteEvent(Event cost, Event effect, Card card) {
+        if (cost.Execute(card)) {
+            if (!effect.Execute(card)) {
+                cost.Revert(card);
+            }
         } else Debug.Log("Cost Failed");
     }
-
-    public void Permanent() {
-        if (PermanentCost.Execute()) {
-            PermanentEffect.Execute();
-        } else Debug.Log("Cost Failed");
+    public void Special(Card card) {
+        SpecialEvent.Execute(card);
     }
 
-    public void UseAbility() {
-        if (AbilityCost.Execute()) {
-            AbilityEffect.Execute();
-        } else Debug.Log("Cost Failed");
-    }
-
-    public void Special() {
-        SpecialEvent.Execute();
-    }
-
-    public void Destruct() {
-        DestructionEffect.Execute();
+    public void Destruct(Card card) {
+        DestructionEffect.Execute(card);
     }
 }

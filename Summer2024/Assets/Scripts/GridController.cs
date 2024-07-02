@@ -70,10 +70,10 @@ public class GridController : MonoBehaviour
         }
 
         if (Input.GetMouseButtonDown(0)) {
-            mouseDownPosition = transform.position;
+            mouseDownPosition = cameraMovement.transform.position;
             cameraMovement.TargetPosition = Vector3.zero;
         }
-        if (Input.GetMouseButtonUp(0) && (mouseDownPosition - transform.position).magnitude < 1f) {
+        if (Input.GetMouseButtonUp(0) && (mouseDownPosition - cameraMovement.transform.position).magnitude < 1f) {
 			RaycastHit hit;
 			var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			

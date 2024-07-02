@@ -15,8 +15,8 @@ MonoBehaviour:
   <ActivationCost>k__BackingField: {fileID: 11400000, guid: 0689663e871d1a54eb7c382b3efbaec5, type: 2}
   <ActivationEffect>k__BackingField: {fileID: 11400000, guid: f372262f3c21ae9479bc783f5558fa8b, type: 2}
   <PermanentCost>k__BackingField: {fileID: 11400000, guid: 0689663e871d1a54eb7c382b3efbaec5, type: 2}
-  <PermanentEffect>k__BackingField: {fileID: 11400000, guid: f372262f3c21ae9479bc783f5558fa8b, type: 2}
+  <PermanentEffect>k__BackingField: {fileID: 11400000, guid: e9efc569ac832224a8d1c6002e52c183, type: 2}
   <SpecialEvent>k__BackingField: {fileID: 11400000, guid: f372262f3c21ae9479bc783f5558fa8b, type: 2}
   <AbilityCost>k__BackingField: {fileID: 11400000, guid: 0689663e871d1a54eb7c382b3efbaec5, type: 2}
-  <AbilityEffect>k__BackingField: {fileID: 11400000, guid: f372262f3c21ae9479bc783f5558fa8b, type: 2}
+  <AbilityEffect>k__BackingField: {fileID: 11400000, guid: e9efc569ac832224a8d1c6002e52c183, type: 2}
   <DestructionEffect>k__BackingField: {fileID: 11400000, guid: f372262f3c21ae9479bc783f5558fa8b, type: 2}

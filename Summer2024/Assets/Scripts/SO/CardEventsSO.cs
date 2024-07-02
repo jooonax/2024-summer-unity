@@ -33,24 +33,28 @@ public class CardEventsSO : ScriptableObject
     public Event DestructionEffect {get; private set;}
     
 
-    public void Activate(Card card) {
-        ExecuteEvent(ActivationCost, ActivationEffect, card);
+    public bool Activate(Card card) {
+        return ExecuteEvent(ActivationCost, ActivationEffect, card);
     }
 
-    public void Permanent(Card card) {
-        ExecuteEvent(PermanentCost, PermanentEffect, card);
+    public bool Permanent(Card card) {
+        return ExecuteEvent(PermanentCost, PermanentEffect, card);
     }
 
-    public void UseAbility(Card card) {
-        ExecuteEvent(AbilityCost, AbilityEffect, card);
+    public bool UseAbility(Card card) {
+        return ExecuteEvent(AbilityCost, AbilityEffect, card);
     }
 
-    private void ExecuteEvent(Event cost, Event effect, Card card) {
+    private bool ExecuteEvent(Event cost, Event effect, Card card) {
         if (cost.Execute(card)) {
             if (!effect.Execute(card)) {
                 cost.Revert(card);
             }
-        } else Debug.Log("Cost Failed");
+        } else {
+            Debug.Log("Cost Failed");
+            return false;
+        }
+        return true;
     }
     public void Special(Card card) {
         SpecialEvent.Execute(card);

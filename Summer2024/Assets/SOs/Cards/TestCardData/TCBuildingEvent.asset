@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756d1d0a543ca5841942c373682db8f1, type: 3}
+  m_Name: TCBuildingEvent
+  m_EditorClassIdentifier: 
+  buildingSO: {fileID: 11400000, guid: a4738ce942002894f81c9bf66466b5b5, type: 2}
+  buildingUIPrefab: {fileID: 1033292967761358451, guid: 12e88fd91f0d6f84a8632b3354c67ec5, type: 3}
+  <DestroyWithCard>k__BackingField: 1

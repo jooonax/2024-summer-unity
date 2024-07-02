@@ -10,9 +10,9 @@ public class Card : MonoBehaviour
         } 
         set {
             if (value) {
-                OnActivation.Invoke();
+                OnActivation?.Invoke();
             } else {
-                OnDeactivation.Invoke();
+                OnDeactivation?.Invoke();
             }
             _active = value;
         }
@@ -24,7 +24,6 @@ public class Card : MonoBehaviour
     public OnActivationDelegate OnActivation {get; set;}
     
     public bool UsedAbility {get; set;}
-    [field:SerializeField]
     public CardSO CardSO {get; set;}
 
 }

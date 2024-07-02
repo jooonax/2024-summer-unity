@@ -26,6 +26,7 @@ public class ActiveCardSlotUI : MonoBehaviour {
         gameObject.SetActive(true);
 
         nameText.text = _card.CardSO.CardName;
+        abilityButton.gameObject.SetActive(!_card.UsedAbility);
     }
 
     private void Awake() {

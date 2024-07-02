@@ -10,19 +10,25 @@ public class BuildController : MonoBehaviour
 
     [field:Header("Debug / Testing")]
     [field: SerializeField]
+    public Canvas BuildControllerCanvas { get; private set;}
+    [field: SerializeField]
     public BuildingSO TestBuilding { get; private set;}
-
-    void Update() {
-        if (Input.GetKeyUp(KeyCode.E)) {
-        BuildBuilding(TestBuilding);
-        }
-        if (Input.GetKeyUp(KeyCode.Q)) {
-            DestroyBuilding(TestBuilding);
+    public static BuildController Instance { get; private set; }
+    void Awake() {
+        if (Instance != null && Instance != this) { 
+            Destroy(this); 
+            return;
+        } 
+        else { 
+            Instance = this; 
         }
     }
-
-    private void BuildBuilding(BuildingSO building) {
-        if (GridController.Instance.SelectedTile && !GridController.Instance.SelectedTile.BuiltOn) {
+    
+    public Building BuildBuilding(BuildingSO building) { 
+        return BuildBuilding(building, GridController.Instance.SelectedTile);
+    }
+    public Building BuildBuilding(BuildingSO building, Tile tile) {
+        if (tile && !tile.BuiltOn) {
             if (Inventory.Inventory.Wood >= building.BuildingCost.Wood &&
                 Inventory.Inventory.Stone >= building.BuildingCost.Stone &&
                 Inventory.Inventory.People >= building.BuildingCost.People
@@ -30,21 +36,27 @@ public class BuildController : MonoBehaviour
                 Inventory.Inventory.Wood -= building.BuildingCost.Wood;
                 Inventory.Inventory.Stone -= building.BuildingCost.Stone;
                 Inventory.Inventory.People -= building.BuildingCost.People;
-                GameObject _building = Instantiate(building.Object, GridController.Instance.SelectedTile.transform.position, Quaternion.identity, GridController.Instance.SelectedTile.transform);
-                GridController.Instance.SelectedTile.BuiltOn = true;
-                GridController.Instance.SelectedTile.BuildingObject = _building;
+                GameObject _building = Instantiate(building.Object, tile.transform.position, Quaternion.identity, tile.transform);
+                _building.GetComponent<Building>().BuildingSO = building;
+                _building.GetComponent<Building>().Tile = tile;
+                tile.BuiltOn = true;
+                tile.BuildingObject = _building;
+                return _building.GetComponent<Building>();
             }
         }
+        return null;
     }
-
-    private void DestroyBuilding(BuildingSO building) {
-        if (GridController.Instance.SelectedTile && GridController.Instance.SelectedTile.BuiltOn) {
+    public void DestroyBuilding(BuildingSO building) { 
+        DestroyBuilding(building, GridController.Instance.SelectedTile);
+    }
+    public void DestroyBuilding(BuildingSO building, Tile tile) {
+        if (tile && tile.BuiltOn) {
             Inventory.Inventory.Wood += building.DestructionReward.Wood;
             Inventory.Inventory.Stone += building.DestructionReward.Stone;
             Inventory.Inventory.People += building.DestructionReward.People;
-            Destroy(GridController.Instance.SelectedTile.BuildingObject);
-            GridController.Instance.SelectedTile.BuiltOn = false;
-            GridController.Instance.SelectedTile.BuildingObject = null;
+            Destroy(tile.BuildingObject);
+            tile.BuiltOn = false;
+            tile.BuildingObject = null;
         }
     }
 }

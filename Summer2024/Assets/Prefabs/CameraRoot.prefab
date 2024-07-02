@@ -573,7 +573,6 @@ GameObject:
   - component: {fileID: 9179839041520095649}
   - component: {fileID: 7236980564043222108}
   - component: {fileID: 230971058185787242}
-  - component: {fileID: 4010839998737688127}
   - component: {fileID: 6391936147972329588}
   - component: {fileID: 8928185703563004165}
   - component: {fileID: 8687933483743371055}
@@ -634,20 +633,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Inventory>k__BackingField: {fileID: 11400000, guid: ac2e1e7de4014b5448e9c524566d9105, type: 2}
   inventoryUI: {fileID: 4265103772093273597}
---- !u!114 &4010839998737688127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2413112879055944815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff6513b545509b447ba021b1a57fc643, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Inventory>k__BackingField: {fileID: 230971058185787242}
-  <TestBuilding>k__BackingField: {fileID: 11400000, guid: a4738ce942002894f81c9bf66466b5b5, type: 2}
 --- !u!114 &6391936147972329588
 MonoBehaviour:
   m_ObjectHideFlags: 0

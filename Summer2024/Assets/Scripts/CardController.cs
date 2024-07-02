@@ -34,24 +34,29 @@ public class CardController : MonoBehaviour
         HandCards = new Card[HAND_CARDS_AMOUNT];
         ActiveCards = new Card[ACTIVE_CARDS_AMOUNT];
         cardControllerUI.Init(this);
+        RoundController.OnNextRound += Permanent;
     
     }
 
     public void ActivateCard(int handIndex) {
         int activeIndex = Array.IndexOf(ActiveCards, null);
-        if (activeIndex == -1) {
-            activeIndex = ACTIVE_CARDS_AMOUNT-1;
+        if (activeIndex == -1) { // takes 0 when nothing free (temporary)
+            activeIndex = 0;
         }
 
         if (HandCards[handIndex]) {
-            if (ActiveCards[activeIndex]) {
+
+            bool successfull = HandCards[handIndex].CardSO.CardEvents.Activate(HandCards[handIndex]);
+            if (!successfull) return;
+
+            if (ActiveCards[activeIndex]) { 
                 Card _activeCard = ActiveCards[activeIndex];
                 _activeCard.Active = false;
                 ActiveCards[activeIndex] = null;
                 DiscardPile.Add(_activeCard);
             }
+
             ActiveCards[activeIndex] = HandCards[handIndex];
-            ActiveCards[activeIndex].CardSO.CardEvents.Activate(ActiveCards[activeIndex]);
             HandCards[handIndex] = null;
 
             RoundController.NextRound();
@@ -72,8 +77,8 @@ public class CardController : MonoBehaviour
 
     public void UseAbility(int activeIndex) {
         if (!ActiveCards[activeIndex].UsedAbility) {
-            ActiveCards[activeIndex].CardSO.CardEvents.UseAbility(ActiveCards[activeIndex]);
-            ActiveCards[activeIndex].UsedAbility = true;
+            bool successfull = ActiveCards[activeIndex].CardSO.CardEvents.UseAbility(ActiveCards[activeIndex]);
+            ActiveCards[activeIndex].UsedAbility = successfull;
         }
         cardControllerUI.UpdateUI();
     }
@@ -117,5 +122,9 @@ public class CardController : MonoBehaviour
         HandCards = new Card[HAND_CARDS_AMOUNT];
         ActiveCards = new Card[ACTIVE_CARDS_AMOUNT];
         DrawCards(HAND_CARDS_AMOUNT);
+    }
+
+    private void OnDestroy() {
+        RoundController.OnNextRound -= Permanent;
     }
 }

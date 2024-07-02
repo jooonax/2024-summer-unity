@@ -8,9 +8,12 @@ public class RoundController : MonoBehaviour {
     [SerializeField]
     private CardController cardController;
 
+    public delegate void NextRoundDelegate();
+    public NextRoundDelegate OnNextRound;
+
     public void NextRound() {
         RoundNumber++;
-        cardController.Permanent();
+        OnNextRound?.Invoke();
         if (cardController.DrawPile.Count == 0) {
             NextDeckPart();
         } else {

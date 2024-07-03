@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -115,19 +116,26 @@ public class ActiveCardSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExi
             Card _card = cardController.ActiveCards[id];
             if (cursorOverSlot) {
                 if (_card != null) {
-                    SetActiveSlot(true);
+                    SetActiveSlot(!isActiveSlot);
+                    foreach (var activeCardSlot in cardController.CardControllerUI.ActiveCardSlots) {
+                        if (activeCardSlot != this) {
+                            activeCardSlot.SetActiveSlot(false);
+                        }
+                    }
                 }
-            } else if (isActiveSlot && _card != null) {
-                SetActiveSlot(false);
             }
         }
     }
 
     public void SetActiveSlot(bool a) {
         activeSlotObject.SetActive(a);
-        cardController.ActiveCards[id].relatedBuildings.ForEach(b => {
-            b.Tile.Marked = a;
-        });
+
+        if (cardController.ActiveCards[id] != null) {
+            cardController.ActiveCards[id].relatedBuildings.ForEach(b => {
+                b.Tile.Marked = a;
+            });
+        }
+
         isActiveSlot = a;
     }
 }

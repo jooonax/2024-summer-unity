@@ -26,14 +26,14 @@ public class CardController : MonoBehaviour
     [SerializeField]
     private PlayerData playerData;
 
-    [Header("UI")]
-    [SerializeField]
-    private CardControllerUI cardControllerUI;
+    [field:Header("UI")]
+    [field:SerializeField]
+    public CardControllerUI CardControllerUI { get; private set; }
 
     private void Awake() {
         HandCards = new Card[HAND_CARDS_AMOUNT];
         ActiveCards = new Card[ACTIVE_CARDS_AMOUNT];
-        cardControllerUI.Init(this);
+        CardControllerUI.Init(this);
         RoundController.OnNextRound += Permanent;
     
     }
@@ -60,7 +60,7 @@ public class CardController : MonoBehaviour
             HandCards[handIndex] = null;
 
             RoundController.NextRound();
-            cardControllerUI.UpdateUI();
+            CardControllerUI.UpdateUI();
         }
     }
 
@@ -69,19 +69,19 @@ public class CardController : MonoBehaviour
         _activeCard.Active = false;
         ActiveCards[activeIndex] = null;
         DiscardPile.Add(_activeCard);
-        cardControllerUI.UpdateUI();
+        CardControllerUI.UpdateUI();
     }
 
     public void DestructCard(int handIndex) {
         HandCards[handIndex].CardSO.CardEvents.Destruct(HandCards[handIndex]);
         DiscardPile.Add(HandCards[handIndex]);
         HandCards[handIndex] = null;
-        cardControllerUI.UpdateUI();
+        CardControllerUI.UpdateUI();
     }
 
     public void NextRound() {
         RoundController.NextRound();
-        cardControllerUI.UpdateUI();
+        CardControllerUI.UpdateUI();
     }
 
     public void UseAbility(int activeIndex) {
@@ -89,7 +89,7 @@ public class CardController : MonoBehaviour
             bool successfull = ActiveCards[activeIndex].CardSO.CardEvents.UseAbility(ActiveCards[activeIndex]);
             ActiveCards[activeIndex].UsedAbility = successfull;
         }
-        cardControllerUI.UpdateUI();
+        CardControllerUI.UpdateUI();
     }
 
     public void Permanent() {
@@ -112,7 +112,7 @@ public class CardController : MonoBehaviour
             HandCards[firstEmptyHandIndex+i] = DrawPile[0];
             DrawPile.RemoveAt(0);
         }
-        cardControllerUI.UpdateUI();
+        CardControllerUI.UpdateUI();
     }
 
     public void NextDeckPart() {
@@ -121,7 +121,7 @@ public class CardController : MonoBehaviour
             ActiveDeckPartNumber++;
             DrawPile = new(Deck[ActiveDeckPartNumber]);
         }
-        cardControllerUI.UpdateUI();
+        CardControllerUI.UpdateUI();
     }
 
     public void StartGame(List<List<Card>> deck) {

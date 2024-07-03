@@ -651,7 +651,7 @@ MonoBehaviour:
   <ActiveCards>k__BackingField: []
   <RoundController>k__BackingField: {fileID: 8928185703563004165}
   playerData: {fileID: 8687933483743371055}
-  cardControllerUI: {fileID: 8022981643661779275}
+  <CardControllerUI>k__BackingField: {fileID: 8022981643661779275}
 --- !u!114 &8928185703563004165
 MonoBehaviour:
   m_ObjectHideFlags: 0

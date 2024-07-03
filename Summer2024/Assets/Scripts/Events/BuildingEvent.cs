@@ -32,12 +32,11 @@ public class BuildingEvent : Event
         if (tile == null) return;
 
         Building building = BuildController.Instance.BuildBuilding(buildingSO, tile);
-        if (addCard) {
-            building.AddCard(cards[0]);
-        }
-        cards.RemoveAt(0);
-
         if (building != null) {
+            if (addCard) {
+                building.AddCard(cards[0]);
+            }
+            cards.RemoveAt(0);
             Destroy(buildingUIObjects[0]);
             buildingUIObjects.RemoveAt(0);
         }

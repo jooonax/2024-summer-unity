@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8297412621710118591}
   - component: {fileID: 7368819246928679965}
+  - component: {fileID: 8276787295590053980}
+  - component: {fileID: 2147533815807665553}
   m_Layer: 5
   m_Name: BuildingEventUI
   m_TagString: Untagged
@@ -32,10 +34,10 @@ RectTransform:
   - {fileID: 2863156872119602391}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 84.386536, y: -18.697083}
-  m_SizeDelta: {x: 168.773, y: 37.3943}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7368819246928679965
 MonoBehaviour:
@@ -50,6 +52,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildBuildingButton: {fileID: 9003470531314704952}
+--- !u!222 &8276787295590053980
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033292967761358451}
+  m_CullTransparentMesh: 1
+--- !u!114 &2147533815807665553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033292967761358451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.12941177}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1755570592216947611
 GameObject:
   m_ObjectHideFlags: 0

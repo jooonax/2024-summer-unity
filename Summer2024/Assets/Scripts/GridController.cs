@@ -21,6 +21,8 @@ public class GridController : MonoBehaviour
     private LineRenderer lineRenderer;
     [SerializeField]
     private Material selectedMaterial;
+    [SerializeField]
+    private Material markedMaterial;
 
     [Header("Tile Selection Movement")]
     [SerializeField]
@@ -50,6 +52,7 @@ public class GridController : MonoBehaviour
             }
         }
         BuildWorld();
+        SelectTile(world[0]);
     }
 
     void Update() {
@@ -69,21 +72,23 @@ public class GridController : MonoBehaviour
             SelectTile(GetNeigbourTile(SelectedTile, Vector2.right));
         }
 
-        if (Input.GetMouseButtonDown(0)) {
-            mouseDownPosition = cameraMovement.transform.position;
-            cameraMovement.TargetPosition = Vector3.zero;
-        }
-        if (Input.GetMouseButtonUp(0) && (mouseDownPosition - cameraMovement.transform.position).magnitude < 1f) {
-			RaycastHit hit;
-			var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        // Moviing with mouse disabled because clicking through UI
+        // if (Input.GetMouseButtonDown(0)) {
+        //     mouseDownPosition = cameraMovement.transform.position;
+        //     cameraMovement.TargetPosition = Vector3.zero;
+        // }
+        // if (Input.GetMouseButtonUp(0) && (mouseDownPosition - cameraMovement.transform.position).magnitude < 1f) {
+		// 	RaycastHit hit;
+		// 	var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			
-			if (Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("Tile"))) {
-				if (hit.transform.tag == "Tile") {
-                    Tile tile = hit.transform.gameObject.GetComponent<Tile>();
-                    SelectTile(tile);
-                }
-			}
-		}
+		// 	if (Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("Tile"))) {
+		// 		if (hit.transform.tag == "Tile") {
+        //             Tile tile = hit.transform.gameObject.GetComponent<Tile>();
+        //             SelectTile(tile);
+        //         }
+		// 	}
+		// }
     }
 
     
@@ -91,7 +96,7 @@ public class GridController : MonoBehaviour
         if (!tile) return;
         if (tile != SelectedTile) {
             tile.Selected = true;
-            cameraMovement.TargetPosition = CalculateTargetPosition(tile);
+            cameraMovement.TargetPosition = cameraMovement.CalculateTargetPosition(tile);
         }
         if (SelectedTile) {
             SelectedTile.Selected = false;
@@ -102,10 +107,7 @@ public class GridController : MonoBehaviour
         } else SelectedTile = null;
     }
 
-    private Vector3 CalculateTargetPosition(Tile tile) {
-        float _positionZ = tile.transform.position.z - (cameraMovement.transform.position.y / (float) Math.Tan(cameraMovement.CameraDownAngle * (Math.PI/180)));
-        return new Vector3(tile.transform.position.x, cameraMovement.transform.position.y, _positionZ);
-    }
+    
 
     public Tile GetNeigbourTile(Tile tile, Vector2 direction) {
         if (!tile) return null;
@@ -138,6 +140,7 @@ public class GridController : MonoBehaviour
 
             Tile component = tileObejct.AddComponent<Tile>();
             component.SelectedLineMaterial = selectedMaterial;
+            component.MarkedLineMaterial = markedMaterial;
             component.DrawGridLine(lineRenderer);
             world.Add(component);
 

@@ -15,11 +15,13 @@ MonoBehaviour:
   <BuildingName>k__BackingField: Block
   <BuildingDescription>k__BackingField: Its just a block
   <BuildingCost>k__BackingField:
-    <Wood>k__BackingField: 5
-    <Stone>k__BackingField: 2
+    <Wood>k__BackingField: 0
+    <Stone>k__BackingField: 0
     <People>k__BackingField: 0
+    <VPs>k__BackingField: 0
   <DestructionReward>k__BackingField:
-    <Wood>k__BackingField: 5
-    <Stone>k__BackingField: 2
+    <Wood>k__BackingField: 0
+    <Stone>k__BackingField: 0
     <People>k__BackingField: 0
+    <VPs>k__BackingField: 0
   <Object>k__BackingField: {fileID: 8185745088278673457, guid: aebf9af19875c7a4a9909b5d25b02966, type: 3}

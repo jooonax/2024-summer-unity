@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24e1473fe5f1964993558c1cc6322db, type: 3}
   m_Name: TCActivationCost
   m_EditorClassIdentifier: 
+  <Description>k__BackingField: 10 W, 5 S, 3 P
   playerInventory: {fileID: 11400000, guid: ac2e1e7de4014b5448e9c524566d9105, type: 2}
   add: 0
   resources:

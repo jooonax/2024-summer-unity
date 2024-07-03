@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24e1473fe5f1964993558c1cc6322db, type: 3}
   m_Name: TCActivationEffect
   m_EditorClassIdentifier: 
+  <Description>k__BackingField: 30 W, 20 S, 10 P
   playerInventory: {fileID: 11400000, guid: ac2e1e7de4014b5448e9c524566d9105, type: 2}
   add: 1
   resources:

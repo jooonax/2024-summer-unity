@@ -14,6 +14,11 @@ public class BuildController : MonoBehaviour
     [field: SerializeField]
     public BuildingSO TestBuilding { get; private set;}
     public static BuildController Instance { get; private set; }
+    public delegate void OnBuiltDelegate();
+    public event OnBuiltDelegate OnBuilt;
+    public delegate void OnDestroyedDelegate();
+    public event OnDestroyedDelegate OnDestroyed;
+
     void Awake() {
         if (Instance != null && Instance != this) { 
             Destroy(this); 
@@ -41,6 +46,7 @@ public class BuildController : MonoBehaviour
                 _building.GetComponent<Building>().Tile = tile;
                 tile.BuiltOn = true;
                 tile.BuildingObject = _building;
+                OnBuilt?.Invoke();
                 return _building.GetComponent<Building>();
             }
         }
@@ -57,6 +63,7 @@ public class BuildController : MonoBehaviour
             Destroy(tile.BuildingObject);
             tile.BuiltOn = false;
             tile.BuildingObject = null;
+            OnDestroyed?.Invoke();
         }
     }
 }

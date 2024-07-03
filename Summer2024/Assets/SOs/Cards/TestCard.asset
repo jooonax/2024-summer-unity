@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardPrefab: {fileID: 848884003465316066, guid: c5c16b64818f5f0419b976dd6d5cc877, type: 3}
   <CardName>k__BackingField: Test Card
-  <CardDescribtion>k__BackingField: 
+  <CardDescribtion>k__BackingField: A card just to test
   <CardSprite>k__BackingField: {fileID: 0}
   <CardEvents>k__BackingField: {fileID: 11400000, guid: 0c7773e9bc3d20a4a8117771304beb3b, type: 2}

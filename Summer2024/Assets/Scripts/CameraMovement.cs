@@ -37,6 +37,9 @@ public class CameraMovement : MonoBehaviour
 
     void Update() {
         transform.position = new Vector3(transform.position.x, GetZoom(), transform.position.z);
+        if (GetZoom() != 0) {
+            TargetPosition = CalculateTargetPosition(GridController.Instance.SelectedTile);
+        }
 
         if (Input.GetAxis("Fire1") == 1) {
             float _mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * MoveSpeed * -1;
@@ -50,7 +53,10 @@ public class CameraMovement : MonoBehaviour
             transform.position = change;
         }
     }
-
+    public Vector3 CalculateTargetPosition(Tile tile) {
+        float _positionZ = tile.transform.position.z - (transform.position.y / (float) Math.Tan(CameraDownAngle * (Math.PI/180)));
+        return new Vector3(tile.transform.position.x, transform.position.y, _positionZ);
+    }
     private float GetZoom() {
         return  Math.Min(Math.Max(transform.position.y + Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * ZoomSpeed * -1, MinZoom), MaxZoom);
     }

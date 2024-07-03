@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -25,5 +26,6 @@ public class Card : MonoBehaviour
     
     public bool UsedAbility {get; set;}
     public CardSO CardSO {get; set;}
+    public List<Building> relatedBuildings = new();
 
 }

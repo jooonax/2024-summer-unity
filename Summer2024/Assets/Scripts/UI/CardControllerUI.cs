@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CardControllerUI : MonoBehaviour {
@@ -23,8 +24,11 @@ public class CardControllerUI : MonoBehaviour {
     [SerializeField]
     private GameObject activeCardSlot;
     private ActiveCardSlotUI[] activeCardSlots;
+    
+    private EventSystem eventSystem;
 
     private CardController cardController;
+
 
     public void Init(CardController cardController) {
         this.cardController = cardController;
@@ -46,6 +50,8 @@ public class CardControllerUI : MonoBehaviour {
         nextRoundButton.onClick.AddListener(cardController.NextRound);
     }
 
+    
+
     public void UpdateUI() {
         roundText.text = "Round " + cardController.RoundController.RoundNumber;
         deckPartText.text = "Deck Part " + (cardController.ActiveDeckPartNumber+1);
@@ -60,5 +66,9 @@ public class CardControllerUI : MonoBehaviour {
 
     private void OnDestroy() {
         nextRoundButton.onClick.RemoveAllListeners();
+    }
+
+    private void Start() {
+        eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
     }
 }

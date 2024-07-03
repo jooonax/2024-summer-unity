@@ -64,8 +64,17 @@ public class CardController : MonoBehaviour
         }
     }
 
+    public void DeactivateCard(int activeIndex) {
+        Card _activeCard = ActiveCards[activeIndex];
+        _activeCard.Active = false;
+        ActiveCards[activeIndex] = null;
+        DiscardPile.Add(_activeCard);
+        cardControllerUI.UpdateUI();
+    }
+
     public void DestructCard(int handIndex) {
         HandCards[handIndex].CardSO.CardEvents.Destruct(HandCards[handIndex]);
+        DiscardPile.Add(HandCards[handIndex]);
         HandCards[handIndex] = null;
         cardControllerUI.UpdateUI();
     }

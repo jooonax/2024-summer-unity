@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a64771417e59473489bc4309b2930feb, type: 3}
   m_Name: TestCardEvents
   m_EditorClassIdentifier: 
+  <ActivationName>k__BackingField: TCActivation
   <ActivationCost>k__BackingField: {fileID: 11400000, guid: 0689663e871d1a54eb7c382b3efbaec5, type: 2}
-  <ActivationEffect>k__BackingField: {fileID: 11400000, guid: f372262f3c21ae9479bc783f5558fa8b, type: 2}
+  <ActivationEffect>k__BackingField: {fileID: 11400000, guid: e9efc569ac832224a8d1c6002e52c183, type: 2}
+  <PermanentName>k__BackingField: TCPermanent
   <PermanentCost>k__BackingField: {fileID: 11400000, guid: 0689663e871d1a54eb7c382b3efbaec5, type: 2}
-  <PermanentEffect>k__BackingField: {fileID: 11400000, guid: e9efc569ac832224a8d1c6002e52c183, type: 2}
-  <SpecialEvent>k__BackingField: {fileID: 11400000, guid: f372262f3c21ae9479bc783f5558fa8b, type: 2}
+  <PermanentEffect>k__BackingField: {fileID: 11400000, guid: f372262f3c21ae9479bc783f5558fa8b, type: 2}
+  <SpecialName>k__BackingField: Build Bonus
+  <SpecialEvent>k__BackingField: {fileID: 11400000, guid: 65f7d29f1d667dc46978f320a71cf671, type: 2}
+  <AbilityName>k__BackingField: TCAbility
   <AbilityCost>k__BackingField: {fileID: 11400000, guid: 0689663e871d1a54eb7c382b3efbaec5, type: 2}
   <AbilityEffect>k__BackingField: {fileID: 11400000, guid: e9efc569ac832224a8d1c6002e52c183, type: 2}
+  <DestructionName>k__BackingField: TCDestruction
   <DestructionEffect>k__BackingField: {fileID: 11400000, guid: f372262f3c21ae9479bc783f5558fa8b, type: 2}

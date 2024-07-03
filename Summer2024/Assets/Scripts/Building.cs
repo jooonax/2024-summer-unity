@@ -7,6 +7,7 @@ public class Building : MonoBehaviour {
     public void AddCard(Card card) {
         this.card = card;
         card.OnDeactivation += DestroyBuilding;
+        card.relatedBuildings.Add(this);
     }
 
     private void DestroyBuilding() {
@@ -15,6 +16,7 @@ public class Building : MonoBehaviour {
 
     private void OnDestroy() {
         if (card != null) {
+            card.relatedBuildings.Remove(this);
             card.OnDeactivation -= DestroyBuilding;
         }
     }

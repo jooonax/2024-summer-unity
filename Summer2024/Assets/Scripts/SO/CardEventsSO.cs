@@ -7,11 +7,15 @@ public class CardEventsSO : ScriptableObject
 {
     [field:Header("Activation")]
     [field:SerializeField]
+    public string ActivationName {get; private set;}
+    [field:SerializeField]
     public Event ActivationCost {get; private set;}
     [field:SerializeField]
     public Event ActivationEffect {get; private set;}
    
     [field:Header("Permanent")]
+    [field:SerializeField]
+    public string PermanentName {get; private set;}
     [field:SerializeField]
     public Event PermanentCost {get; private set;}
     [field:SerializeField]
@@ -19,10 +23,14 @@ public class CardEventsSO : ScriptableObject
 
     [field:Header("Special")]
     [field:SerializeField]
-    public Event SpecialEvent {get; private set;}
+    public string SpecialName {get; private set;}
+    [field:SerializeField]
+    public EventTrigger SpecialEvent {get; private set;}
 
     
     [field:Header("Ability")]
+    [field:SerializeField]
+    public string AbilityName {get; private set;}
     [field:SerializeField]
     public Event AbilityCost {get; private set;}
     [field:SerializeField]
@@ -30,10 +38,13 @@ public class CardEventsSO : ScriptableObject
 
     [field:Header("Destruction")]
     [field:SerializeField]
+    public string DestructionName {get; private set;}
+    [field:SerializeField]
     public Event DestructionEffect {get; private set;}
     
 
     public bool Activate(Card card) {
+        SpecialEvent.Init(card);
         return ExecuteEvent(ActivationCost, ActivationEffect, card);
     }
 
@@ -55,9 +66,6 @@ public class CardEventsSO : ScriptableObject
             return false;
         }
         return true;
-    }
-    public void Special(Card card) {
-        SpecialEvent.Execute(card);
     }
 
     public void Destruct(Card card) {

@@ -129,9 +129,6 @@ public class GridController : MonoBehaviour
         return world[_newIndex];
     }
 
-    
-
-
     private Vector3 startPosition = Vector3.zero;
     private void BuildWorld() {
         int i = 1;

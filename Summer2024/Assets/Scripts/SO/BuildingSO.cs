@@ -18,6 +18,10 @@ public class BuildingSO : ScriptableObject
     public Resources BuildingCost { get; private set; }
     [field:SerializeField]
     public Resources DestructionReward { get; private set; }
+    [field:SerializeField]
+    public Event PermanentEvent { get; private set; }
+    [field:SerializeField]
+    public EventTrigger SpecialEvent { get; private set; }
 
 
     [field:Header("Objects")]

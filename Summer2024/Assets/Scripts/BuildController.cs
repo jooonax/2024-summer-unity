@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BuildController : MonoBehaviour
@@ -13,6 +14,10 @@ public class BuildController : MonoBehaviour
     public Canvas BuildControllerCanvas { get; private set;}
     [field: SerializeField]
     public BuildingSO TestBuilding { get; private set;}
+    [SerializeField]
+    private RoundController roundController;
+
+    public List<Building> Buildings { get; private set; }
     public static BuildController Instance { get; private set; }
     public delegate void OnBuiltDelegate();
     public event OnBuiltDelegate OnBuilt;
@@ -26,6 +31,8 @@ public class BuildController : MonoBehaviour
         } 
         else { 
             Instance = this; 
+            Buildings = new();
+            roundController.OnNextRound += Permanent;
         }
     }
     
@@ -47,6 +54,7 @@ public class BuildController : MonoBehaviour
                 tile.BuiltOn = true;
                 tile.BuildingObject = _building;
                 OnBuilt?.Invoke();
+                Buildings.Add(_building.GetComponent<Building>());
                 return _building.GetComponent<Building>();
             }
         }
@@ -60,10 +68,21 @@ public class BuildController : MonoBehaviour
             Inventory.Inventory.Wood += building.DestructionReward.Wood;
             Inventory.Inventory.Stone += building.DestructionReward.Stone;
             Inventory.Inventory.People += building.DestructionReward.People;
+            Buildings.Remove(tile.BuildingObject.GetComponent<Building>());
             Destroy(tile.BuildingObject);
             tile.BuiltOn = false;
             tile.BuildingObject = null;
             OnDestroyed?.Invoke();
         }
+    }
+
+    private void Permanent() {
+        Buildings.ForEach(building => {
+            building.BuildingSO.PermanentEvent.Execute(building.Card);
+        });
+    }
+
+    private void OnDestroy() {
+        roundController.OnNextRound -= Permanent;
     }
 }

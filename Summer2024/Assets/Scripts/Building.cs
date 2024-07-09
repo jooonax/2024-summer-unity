@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Building : MonoBehaviour {
     public BuildingSO BuildingSO {get; set;}
-    private Card card;
+    public Card Card {get; private set;}
 
     public void AddCard(Card card) {
-        this.card = card;
+        this.Card = card;
         card.OnDeactivation += DestroyBuilding;
         card.relatedBuildings.Add(this);
     }
@@ -15,9 +15,9 @@ public class Building : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        if (card != null) {
-            card.relatedBuildings.Remove(this);
-            card.OnDeactivation -= DestroyBuilding;
+        if (Card != null) {
+            Card.relatedBuildings.Remove(this);
+            Card.OnDeactivation -= DestroyBuilding;
         }
     }
 

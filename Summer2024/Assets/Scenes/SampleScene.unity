@@ -595,6 +595,7 @@ MonoBehaviour:
   <Inventory>k__BackingField: {fileID: 1611963187}
   <BuildControllerCanvas>k__BackingField: {fileID: 829251451}
   <TestBuilding>k__BackingField: {fileID: 11400000, guid: a4738ce942002894f81c9bf66466b5b5, type: 2}
+  roundController: {fileID: 1611963190}
 --- !u!1001 &1277712117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -683,6 +684,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abe969223632c4b4f8b2f2985674f747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1611963190 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8928185703563004165, guid: 429d79848063f91419b54a398eafc809, type: 3}
+  m_PrefabInstance: {fileID: 1277712117}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d59b96a5fb804d4ea8ee3fab32cbe7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1692601844
